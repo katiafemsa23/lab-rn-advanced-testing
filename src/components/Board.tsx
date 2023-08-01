@@ -19,11 +19,9 @@ export const Board = () => {
       return;
     }
 
-    console.log(x, y, newSquares[x]);
     newSquares[x][y] = value;
 
     setPlayerTurn(!playerTurn);
-    console.log(newSquares);
     setSquares(newSquares);
   };
 
