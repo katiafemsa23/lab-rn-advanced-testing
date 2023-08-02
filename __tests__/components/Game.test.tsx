@@ -1,15 +1,15 @@
 import React from 'react';
-import App from '../../App';
 import {
   waitFor,
   render,
   screen,
   fireEvent,
 } from '@testing-library/react-native';
+import {Game} from '../../src/components/Game';
 
 describe('Game Test', () => {
   it('display squares with initial state', async () => {
-    const {queryAllByTestId} = render(<App />);
+    const {queryAllByTestId} = render(<Game />);
 
     const squaresValues = await waitFor(() => queryAllByTestId('square-value'));
 
@@ -20,16 +20,15 @@ describe('Game Test', () => {
   });
 
   it('X as winner', async () => {
-    render(<App />);
+    render(<Game />);
 
     const squares = screen.queryAllByTestId('square');
 
     fireEvent.press(squares[0]);
-    fireEvent.press(squares[1]);
-    fireEvent.press(squares[2]);
-    fireEvent.press(squares[4]);
     fireEvent.press(squares[3]);
-    fireEvent.press(squares[7]);
+    fireEvent.press(squares[1]);
+    fireEvent.press(squares[4]);
+    fireEvent.press(squares[2]);
 
     await waitFor(() => {
       expect(screen.getByTestId('winner').children.toString()).toBe(
@@ -39,15 +38,16 @@ describe('Game Test', () => {
   });
 
   it('O as winner', async () => {
-    render(<App />);
+    render(<Game />);
 
     const squares = screen.queryAllByTestId('square');
 
     fireEvent.press(squares[0]);
-    fireEvent.press(squares[3]);
+    fireEvent.press(squares[6]);
     fireEvent.press(squares[1]);
-    fireEvent.press(squares[4]);
-    fireEvent.press(squares[2]);
+    fireEvent.press(squares[7]);
+    fireEvent.press(squares[3]);
+    fireEvent.press(squares[8]);
 
     await waitFor(() => {
       expect(screen.getByTestId('winner').children.toString()).toBe(
