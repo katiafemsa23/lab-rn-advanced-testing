@@ -1,9 +1,10 @@
 import {Text, View} from 'react-native';
-import styles from '../../styles';
-import Board from './Board';
 import {useMemo, useState} from 'react';
+import {calculateWinner, isBoardFull} from '../utils/tic-tac-toe';
+import {ResetGame} from './ResetGame';
 import Winner from './Winner';
-import {calculateWinner} from '../utils/tic-tac-toe';
+import Board from './Board';
+import styles from '../../styles';
 
 export const Game = () => {
   const [playerTurn, setPlayerTurn] = useState(true);
@@ -42,7 +43,10 @@ export const Game = () => {
       <Text style={styles.title}>Tic-Tac-Toe!</Text>
       <Board squares={squares} handleOnPress={handleSquarePress} />
 
-      {winner && <Winner winner={winner} handleResetGame={reseGame} />}
+      {winner ? <Winner winner={winner} /> : null}
+      {winner || isBoardFull(squares) ? (
+        <ResetGame handleResetGame={reseGame} />
+      ) : null}
     </View>
   );
 };

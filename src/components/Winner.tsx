@@ -3,17 +3,13 @@ import React from 'react';
 import styles from '../../styles';
 
 type Props = {
-  handleResetGame: () => void;
   winner: string;
 };
 
-const Winner = ({handleResetGame, winner}: Props) => {
+const Winner = ({winner}: Props) => {
   return (
     <View style={styles.winnerBlock}>
       <Text style={styles.text} testID="winner">{`Winner: ${winner}`}</Text>
-      <TouchableOpacity onPress={handleResetGame} style={styles.winnerBlock}>
-        <Text style={styles.text}>New Game</Text>
-      </TouchableOpacity>
     </View>
   );
 };
