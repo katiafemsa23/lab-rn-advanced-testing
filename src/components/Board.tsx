@@ -1,30 +1,13 @@
-import {useState} from 'react';
 import {View} from 'react-native';
 import {Square} from './Square';
 import styles from '../../styles';
 
-export const Board = () => {
-  const [squares, setSquares] = useState([
-    ['', '', ''],
-    ['', '', ''],
-    ['', '', ''],
-  ]);
-  const [playerTurn, setPlayerTurn] = useState(true);
+type PropsT = {
+  squares: string[][];
+  handleOnPress: (x: number, y: number) => void;
+};
 
-  const handleSquarePress = (x: number, y: number) => {
-    const value = playerTurn ? 'X' : 'O';
-    const newSquares = [...squares];
-
-    if (newSquares[x][y] !== '') {
-      return;
-    }
-
-    newSquares[x][y] = value;
-
-    setPlayerTurn(!playerTurn);
-    setSquares(newSquares);
-  };
-
+export const Board = ({squares, handleOnPress}: PropsT) => {
   return (
     <View style={styles.board} testID="board">
       {squares.map((row, rowIndex) => (
@@ -35,7 +18,7 @@ export const Board = () => {
               x={rowIndex}
               value={square}
               key={`square-${rowIndex}${index}`}
-              handleOnPress={handleSquarePress}
+              handleOnPress={handleOnPress}
             />
           ))}
         </View>
