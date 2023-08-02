@@ -13,7 +13,9 @@ export const Square = ({x, y, value, handleOnPress}: PropsT) => {
 
   return (
     <TouchableOpacity style={styles.square} onPress={onPress} testID="square">
-      <Text style={styles.squareText}>{value}</Text>
+      <Text style={styles.squareText} testID="square-value">
+        {value}
+      </Text>
     </TouchableOpacity>
   );
 };

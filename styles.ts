@@ -37,6 +37,19 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: 'bold',
   },
+  winnerBlock: {
+    marginTop: 50,
+  },
+  text: {
+    color: '#fff',
+    textAlign: 'center',
+  },
+  newGameText: {
+    color: '#fff',
+    fontSize: 14,
+    paddingHorizontal: 20,
+    paddingVertical: 5,
+  },
 });
 
 export default styles;
